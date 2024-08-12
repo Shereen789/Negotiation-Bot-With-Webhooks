@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negotiation Simulation</title>
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  </head>
+  <body>
+  <!-- Dialogflow Messenger Script -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  
+  <script>
+    // Function to get URL parameters
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    // Get userId from URL parameters
+    const x = getParameterByName('x');
+    console.log("Captured userId:", userId); // This line will print the userId to the console.
+    
+    // Get sessionId and botId from URL parameters or define statically
+    const y = getParameterByName('y') || 'defaultSessionId';
+    console.log("Session ID:", sessionId);
+    
+    window.addEventListener('df-messenger-loaded', function () {
+        const dfMessenger = document.querySelector('df-messenger');
+        dfMessenger.addEventListener('df-request-sent', function (event) {
+        console.log("Event Detail:", event.detail);
+        if (event.detail && event.detail.requestBody && event.detail.requestBody.queryInput && event.detail.requestBody.queryInput.text) {
+            const message = event.detail.requestBody.queryInput.text.text;
+            if (message) {
+                sendMessageToBackend(message);
+            } else {
+                console.log("No message text found in the event detail");
+            }}
+        });
+    });
+
+    // Function to send message to the backend
+    function sendMessageToBackend(message) {
+        const x = getParameterByName('x');
+        const y = getParameterByName('y');
+        const z = "Module1";
+   
+        fetch('https://handling-webhooks-obxampu6qq-uc.a.run.app/send-message', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                userId: x,
+                sessionId: y,
+                botId: z
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+  </script>
+  <df-messenger
+    location="us-central1"
+    project-id="chatbot-project-420510"
+    agent-id="49f42772-94bf-4ccc-b64f-74849f143e3a"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat
+     chat-title="ISBOnline Negotiation Simulation">
+    </df-messenger-chat>
+  </df-messenger>
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Google Sans;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        df-messenger {
+          width: 100%; /* Adjust width on smaller screens */
+          height: auto; /* Optional: Change to auto if you want to adjust the height */
+          --df-messenger-chat-icon-size: 60px; /* Optional: Reduce chat icon size on smaller screens */
+  </style>
+</body>
+</html>

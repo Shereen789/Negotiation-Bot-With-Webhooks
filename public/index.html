@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1 Negotiation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p, li {
+            color: #666;
+            line-height: 1.6;
+        }
+        ul {
+            margin-bottom: 15px;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            p, li, button {
+                font-size: 14px;
+            }
+            button {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sharpen Your Negotiation Skills with a Simulated Biotech Deal</h1>
+        <p>Engage in a simulated negotiation between Naturally Cotton and Biotech regarding the acquisition of AG2 technology. Based on the "Biotech & Naturally Cotton" case study, you'll put Professor Madan Pillutla's negotiation concepts and table tactics from the ISB Online course into practice. This simulation features a sophisticated text chat based Generative AI Digital Agent that will realistically represent a determined buyer.</p>
+        
+        <h2>Instructions</h2>
+        
+        <div class="instruction">
+            <h3>Preparation is Key:</h3>
+            <ul>
+                <li>Thoroughly review the "Biotech & Naturally Cotton" case study on the ISB Online learning experience platform.</li>
+                <li>Answer the accompanying questions to ensure you understand the key issues and interests of both parties in the negotiation.</li>
+            </ul>
+        </div>
+
+        <div class="instruction">
+            <h3>Seller's Role:</h3>
+            <ul>
+                <li>You will take on the role of the seller in this negotiation. Begin the negotiation by introducing yourself as Andy from BioTech, interested in selling AG2 enzyme technology.</li>
+                <li>Think strategically about your goals, interests, and the table tactics taught by Professor Pillutla.</li>
+                <li>Aim for an outcome that maximises your benefit while addressing the buyer's concerns.</li>
+            </ul>
+        </div>
+
+        <div class="instruction">
+            <h3>Engage with the AI Buyer:</h3>
+            <ul>
+                <li>When you start the simulation, the Generative AI Digital Agent will take the role of the buyer.</li>
+                <li>Be prepared to actively listen (read), propose creative solutions, and handle objections, all while keeping your goals in mind.</li>
+            </ul>
+        </div>
+
+     
+        <div class="note">
+            <p><strong>Disclaimer:</strong> The Generative AI Digital Agent provides a simulated negotiation experience, designed to mirror real-world interactions. However, due to the inherent limitations of AI, it might not fully capture the complexities of human negotiations and can occasionally respond unexpectedly. In such cases, participants are advised to reset the simulation and start again, bearing in mind that the AI serves as a learning tool rather than a perfect replication of real-life scenarios.</p>
+        </div>
+
+        <!-- Button to start negotiation -->
+        <button onclick="launchNegotiation()">Launch Negotiation Simulation</button>
+    </div>
+<script>
+     // Function to get URL parameters
+     function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    function launchNegotiation() {
+        const x = getParameterByName('userId') || 'defaultUserId';
+        const y = getParameterByName('sessionId') || 'defaultSessionId';
+        window.location.href = `chat.html?userId=${userId}&sessionId=${sessionId}`;
+        }
+
+</script>
+</body>
+</html>
